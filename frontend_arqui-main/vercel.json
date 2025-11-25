@@ -1,0 +1,8 @@
+{
+   "moveCommand" : "cd .\\arqui_front\\",
+  "buildCommand": "npm run build",
+  "devCommand": "npm run dev",
+  "installCommand": "npm install",
+  "framework": "nextjs",
+  "outputDirectory": ".next"
+}

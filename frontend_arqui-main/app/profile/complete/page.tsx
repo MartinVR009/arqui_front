@@ -119,14 +119,18 @@ export default function CompleteProfilePage() {
                     if (createError?.status === 409 || createError?.status === 400) {
                         console.log('🔄 Cliente ya existe, intentando actualizar...');
                         const client = await clients.getMe();
-                        const updatedClient = await clients.update(client.id, {
-                            name: formData.names,
-                            phone: formData.phone,
-                            clientId: newClientId,
-                        });
-                        console.log('✅ Cliente actualizado:', updatedClient);
-                        setClientId(newClientId);
-                        toast.success(t("Perfil actualizado exitosamente", "Profile updated successfully"));
+                        if (client) {
+                            const updatedClient = await clients.update(client.id, {
+                                name: formData.names,
+                                phone: formData.phone,
+                                clientId: newClientId,
+                            });
+                            console.log('✅ Cliente actualizado:', updatedClient);
+                            setClientId(newClientId);
+                            toast.success(t("Perfil actualizado exitosamente", "Profile updated successfully"));
+                        } else {
+                            throw new Error('Could not retrieve client information');
+                        }
                     } else {
                         throw createError;
                     }

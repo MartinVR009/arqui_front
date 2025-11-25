@@ -100,7 +100,7 @@ export function DateRangePicker({ isOpen, onToggle }: DateRangePickerProps) {
       1
     );
     const { daysInMonth, startingDayOfWeek } = getDaysInMonth(displayDate);
-    const days: JSX.Element[] = [];
+    const days: React.ReactElement[] = [];
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
